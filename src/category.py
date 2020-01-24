@@ -5,9 +5,9 @@ from urllib.parse import urljoin
 import requests
 from bs4 import BeautifulSoup
 
+from config import CATEGORY_URL
 from helpers import get_absolute_url
 
-CATEGORY_URL = 'http://tululu.org/l55/'
 BOOKS_PER_PAGE = 25
 
 

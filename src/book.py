@@ -4,10 +4,8 @@ from typing import Dict, List, Tuple, Union
 import requests
 from bs4 import BeautifulSoup
 
+from config import BOOK_FILE_PATH, IMAGE_FILE_PATH
 from helpers import get_absolute_url, save_file
-
-BOOK_FILE_PATH = 'books'
-IMAGE_FILE_PATH = 'images'
 
 
 class NotTextBookError(Exception):
