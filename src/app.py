@@ -1,22 +1,38 @@
+import argparse
 import json
+from typing import List, Optional
 
 from book import download_book
 from category import get_books_urls
 
 
-def batch_download(book_limit: int):
-    urls = get_books_urls(book_limit)
-    books_contexts = [download_book(url) for url in urls]
+def batch_download(start_page: int, end_page: Optional[int] = None) -> List:
+    urls = get_books_urls(start_page, end_page)
+    books_contexts = []
+
+    for url in urls:
+        book_context = download_book(url)
+        books_contexts.append(book_context) if book_context else None
 
     return books_contexts
 
 
-def main(book_limit: int):
-    books = batch_download(book_limit)
+def create_parser():
+    parser = argparse.ArgumentParser(description='Book downloader')
+
+    parser.add_argument('--start_page', type=int, help='From page')
+    parser.add_argument('--end_page', type=int, default=0, help='To page (exclude)')
+
+    return parser.parse_args()
+
+
+def main(start_page: int, end_page: Optional[int] = None):
+    books = batch_download(start_page, end_page)
 
     with open('books.json', 'w') as json_file:
         json.dump(books, json_file, ensure_ascii=False)
 
 
 if __name__ == '__main__':
-    main(10)
+    args = create_parser()
+    main(args.start_page, args.end_page)
