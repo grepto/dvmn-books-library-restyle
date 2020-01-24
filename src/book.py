@@ -22,7 +22,7 @@ def get_file_name_by_content_disposition(cd: str) -> Union[str, None]:
     return file_name[0]
 
 
-def get_book(url: str) -> Tuple[str, bytes]:
+def get_book_content(url: str) -> Tuple[str, bytes]:
     response_headers = requests.head(url)
 
     content_type = response_headers.headers.get('Content-Type')
