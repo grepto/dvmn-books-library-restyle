@@ -3,6 +3,7 @@ from typing import Union, Tuple
 import os
 
 import requests
+from pathvalidate import sanitize_filename
 
 
 class NotTextBookError(Exception):
@@ -38,14 +39,16 @@ def get_book(url: str) -> Tuple[str, bytes]:
     return file_name, response.content
 
 
-def save_book(book: bytes, name: str, path: str = None):
+def save_book(book: bytes, name: str, path: str = None) -> str:
     if path:
         os.makedirs(path, exist_ok=True)
 
-    file_name = os.path.join(path, name)
+    file_name = os.path.join(path, sanitize_filename(name))
 
     with open(file_name, 'wb') as book_file:
         book_file.write(book)
+
+    return file_name
 
 
 if __name__ == '__main__':
