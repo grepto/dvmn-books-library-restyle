@@ -13,7 +13,16 @@ pip install -r requirements.txt
 python3 app.py
 ```
 
+## Настройка
 Настройки приложения в файле `config.py`
  - `BOOK_FILE_PATH` - папка для сохранения файлов книг
  - `IMAGE_FILE_PATH` - папка для сохранения изображений обложек
  - `CATEGORY_URL` - URL жанра книг
+
+
+## Линтинг
+Для проверки кода на соответствие PEP-8 выполните
+```shell script
+flake8 src
+pycodestyle src
+```
