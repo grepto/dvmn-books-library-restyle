@@ -4,6 +4,7 @@ from typing import List, Optional
 
 from book import download_book
 from category import get_books_urls
+import config
 
 
 def batch_download(start_page: int, end_page: Optional[int] = None) -> List:
@@ -31,7 +32,7 @@ def main():
     args = parser.parse_args()
     books = batch_download(args.start_page, args.end_page)
 
-    with open('books.json', 'w') as json_file:
+    with open(config.BOOK_JSON_FILE, 'w') as json_file:
         json.dump(books, json_file, ensure_ascii=False)
 
 
