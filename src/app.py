@@ -23,16 +23,17 @@ def create_parser():
     parser.add_argument('--start_page', type=int, help='From page')
     parser.add_argument('--end_page', type=int, default=0, help='To page (exclude)')
 
-    return parser.parse_args()
+    return parser
 
 
-def main(start_page: int, end_page: Optional[int] = None):
-    books = batch_download(start_page, end_page)
+def main():
+    parser = create_parser()
+    args = parser.parse_args()
+    books = batch_download(args.start_page, args.end_page)
 
     with open('books.json', 'w') as json_file:
         json.dump(books, json_file, ensure_ascii=False)
 
 
 if __name__ == '__main__':
-    args = create_parser()
-    main(args.start_page, args.end_page)
+    main()
