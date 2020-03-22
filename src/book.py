@@ -4,7 +4,6 @@ from typing import Dict, List, Tuple, Union
 import requests
 from bs4 import BeautifulSoup
 
-from config import BOOK_FILE_PATH, IMAGE_FILE_PATH
 from helpers import get_absolute_url, save_file
 
 
@@ -98,7 +97,7 @@ def get_book_context(book_page_url: str) -> Dict:
     )
 
 
-def download_book(book_page_url: str) -> Dict:
+def download_book(book_page_url: str, book_path: str, image_path: str) -> Dict or None:
     print(book_page_url)  # noqa
     try:
         book_context = get_book_context(book_page_url)
@@ -107,10 +106,10 @@ def download_book(book_page_url: str) -> Dict:
 
     book_file_name, book_content = get_book_content(book_context.get('book_file_download_url'))
 
-    book_local_file_name = save_file(book_content, book_file_name, BOOK_FILE_PATH)
+    book_local_file_name = save_file(book_content, book_file_name, book_path)
 
     image_file_name, image_content = get_image_content(book_context.get('book_image_download_url'))
-    image_local_file_name = save_file(image_content, image_file_name, IMAGE_FILE_PATH)
+    image_local_file_name = save_file(image_content, image_file_name, image_path)
 
     book_context.update(
         book_path=book_local_file_name,
