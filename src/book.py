@@ -98,7 +98,6 @@ def get_book_context(book_page_url: str) -> Dict:
 
 
 def download_book(book_page_url: str, book_path: str, image_path: str) -> Dict or None:
-    print(book_page_url)  # noqa
     try:
         book_context = get_book_context(book_page_url)
     except NoFileAvaliable:

@@ -2,15 +2,18 @@ import argparse
 import json
 from typing import List
 
+from tqdm import tqdm
+
 from book import download_book
 from category import get_books_urls
 
 
 def batch_download(start_page: int, end_page: int, book_path: str, image_path: str, category_url: str) -> List:
-    urls = get_books_urls(start_page, end_page, category_url)
+    urls = tqdm(get_books_urls(start_page, end_page, category_url))
     books_contexts = []
 
     for url in urls:
+        urls.set_description(f'Downloading {url}')
         book_context = download_book(url, book_path, image_path)
         books_contexts.append(book_context) if book_context else None
 
