@@ -46,8 +46,12 @@ def render_site(template_folder: str = 'template',
                     )
 
 
-if __name__ == '__main__':
+def start_server():
     render_site()
     server = Server()
     server.watch('template/*.html', render_site)
     server.serve(root='html/')
+
+
+if __name__ == '__main__':
+    start_server()

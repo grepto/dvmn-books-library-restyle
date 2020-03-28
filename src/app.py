@@ -3,6 +3,7 @@ import json
 
 from book import download_books
 import defaults
+from website_render import render_site
 
 
 def create_parser():
@@ -17,6 +18,7 @@ def create_parser():
     parser.add_argument('--book_json', type=str, default=defaults.JSON_FILE, help='Name of destination json file')
     parser.add_argument('--html_template_path', type=str, default=defaults.TEMPLATE_PATH, help='Path to html templates')
     parser.add_argument('--html_template', type=str, default=defaults.TEMPLATE_NAME, help='Name of html template file')
+    parser.add_argument('--books_per_page', type=int, default=defaults.BOOKS_PER_PAGE, help='Quantity of books per one page')
 
     return parser
 
@@ -34,6 +36,13 @@ def main():
 
     with open(args.book_json, 'w') as json_file:
         json.dump(books, json_file, ensure_ascii=False)
+
+    render_site(template_folder=args.html_template_path,
+                template_name=args.html_template,
+                destination_folder=args.root_path,
+                json_file=args.book_json,
+                books_per_page=args.books_per_page,
+                )
 
 
 if __name__ == '__main__':
