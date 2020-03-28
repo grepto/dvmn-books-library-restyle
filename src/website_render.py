@@ -33,7 +33,7 @@ def render_site(template_folder: str = 'template',
                 json_file: str = 'books.json',
                 books_per_page: int = 20):
     all_books = get_books(json_file)
-    books_chunks = [all_books[x:x + books_per_page] for x in range(0, len(all_books), books_per_page)]  # TODO: Books per page to args
+    books_chunks = [all_books[x:x + books_per_page] for x in range(0, len(all_books), books_per_page)]
 
     for page_no, chunk in enumerate(books_chunks, 1):
         render_page(template_folder=template_folder,
