@@ -121,7 +121,7 @@ def download_book(book_page_url: str, book_path: str, image_path: str) -> Dict o
     return book_context
 
 
-def download_books(start_page: int, end_page: int, book_path: str, image_path: str, category_url: str, root_path: str = None) -> List:
+def download_books(start_page: int, end_page: int, book_path: str, image_path: str, category_url: str) -> List:
     urls = tqdm(get_books_urls(start_page, end_page, category_url))
     books_contexts = []
 
@@ -129,9 +129,5 @@ def download_books(start_page: int, end_page: int, book_path: str, image_path: s
         urls.set_description(f'Downloading {url}')
         book_context = download_book(url, book_path, image_path)
         books_contexts.append(book_context) if book_context else None
-
-    if root_path:
-        shutil.move(book_path, root_path)
-        shutil.move(image_path, root_path)
 
     return books_contexts

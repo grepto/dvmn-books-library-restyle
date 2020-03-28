@@ -31,7 +31,6 @@ def main():
                            args.book_path,
                            args.image_path,
                            args.category_url,
-                           args.root_path,
                            )
 
     with open(args.book_json, 'w') as json_file:
