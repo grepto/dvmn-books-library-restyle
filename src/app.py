@@ -1,8 +1,8 @@
 import argparse
 import json
 
-from book import download_books
 import defaults
+from book import download_books
 from website_render import render_site
 
 

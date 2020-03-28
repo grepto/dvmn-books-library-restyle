@@ -1,10 +1,10 @@
 import re
-from typing import Dict, List, Tuple, Union
-from tqdm import tqdm
 import shutil
+from typing import Dict, List, Tuple, Union
 
 import requests
 from bs4 import BeautifulSoup
+from tqdm import tqdm
 
 from category import get_books_urls
 from helpers import get_absolute_url, save_file
