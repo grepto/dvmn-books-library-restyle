@@ -1,0 +1,9 @@
+TEMPLATE_PATH = 'template'
+TEMPLATE_NAME = 'index.html'
+ROOT_PATH = 'html'
+BOOK_PATH = 'books'
+IMAGE_PATH = 'images'
+JSON_FILE = 'books.json'
+END_PAGE = 0
+BOOKS_PER_PAGE = 20
+CATEGORY_URL = 'http://tululu.org/l55/'
