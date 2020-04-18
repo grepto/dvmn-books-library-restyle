@@ -7,3 +7,4 @@ pathvalidate==2.0.1
 lxml==4.4.2
 jinja2==2.11.1
 livereload==2.6.1
+more-itertools==8.2.0

@@ -3,6 +3,7 @@ from typing import List
 
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 from livereload import Server
+import more_itertools
 
 
 def get_books(books_file_path: str) -> List:
@@ -33,7 +34,7 @@ def render_site(template_folder: str,
                 json_file: str,
                 books_per_page: int):
     all_books = get_books(json_file)
-    books_chunks = [all_books[x:x + books_per_page] for x in range(0, len(all_books), books_per_page)]
+    books_chunks = list(more_itertools.chunked(all_books, books_per_page))
 
     for page_no, chunk in enumerate(books_chunks, 1):
         render_page(template_folder=template_folder,
