@@ -5,11 +5,11 @@ from jinja2 import Environment, FileSystemLoader, select_autoescape
 from livereload import Server
 
 
-def get_books(books_json_file: str) -> List:
-    with open(books_json_file, 'r') as books_json:
-        books_json = books_json.read()
+def get_books(books_file_path: str) -> List:
+    with open(books_file_path, 'r') as books_file:
+        books_file = books_file.read()
 
-    books = json.loads(books_json)
+    books = json.loads(books_file)
 
     return books
 
@@ -27,11 +27,11 @@ def render_page(template_folder: str, template_name: str, destination_folder: st
         file.write(page)
 
 
-def render_site(template_folder: str = 'template',
-                template_name: str = 'index.html',
-                destination_folder: str = 'html',
-                json_file: str = 'books.json',
-                books_per_page: int = 20):
+def render_site(template_folder: str,
+                template_name: str,
+                destination_folder: str,
+                json_file: str,
+                books_per_page: int):
     all_books = get_books(json_file)
     books_chunks = [all_books[x:x + books_per_page] for x in range(0, len(all_books), books_per_page)]
 
