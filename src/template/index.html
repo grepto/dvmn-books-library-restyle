@@ -17,31 +17,31 @@
   <title>Books library!</title>
 </head>
   <body>
-    <nav aria-label="...">
-      <ul class="pagination">
-        <li class="page-item {% if page_no == 1 %}disabled{% endif %}">
-          <a class="page-link" href="index{{page_no - 1}}.html">Назад</a>
-        </li>
-
-        {% for i in range(1, page_quantity + 1) %}
-          {% if i == page_no %}
-            <li class="page-item active" aria-current="page">
-              <span class="page-link">
-                {{i}}
-                <span class="sr-only">(current)</span>
-              </span>
-            </li>
-          {% else %}
-            <li class="page-item"><a class="page-link" href="index{{i}}.html">{{i}}</a></li>
-          {% endif %}
-        {% endfor %}
-
-        <li class="page-item {% if page_no == page_quantity %}disabled{% endif %}">
-          <a class="page-link" href="index{{page_no + 1}}.html">Вперед</a>
-        </li>
-      </ul>
-    </nav>
     <div class="container">
+      <nav aria-label="...">
+        <ul class="pagination">
+          <li class="page-item {% if page_no == 1 %}disabled{% endif %}">
+            <a class="page-link" href="index{{page_no - 1}}.html">Назад</a>
+          </li>
+
+          {% for i in range(1, page_quantity + 1) %}
+            {% if i == page_no %}
+              <li class="page-item active" aria-current="page">
+                <span class="page-link">
+                  {{i}}
+                  <span class="sr-only">(current)</span>
+                </span>
+              </li>
+            {% else %}
+              <li class="page-item"><a class="page-link" href="index{{i}}.html">{{i}}</a></li>
+            {% endif %}
+          {% endfor %}
+
+          <li class="page-item {% if page_no == page_quantity %}disabled{% endif %}">
+            <a class="page-link" href="index{{page_no + 1}}.html">Вперед</a>
+          </li>
+        </ul>
+    </nav>
       <div class="row">
         {% for book in books %}
           <div class="col">
