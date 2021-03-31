@@ -4,7 +4,7 @@ flake8-isort==2.8.0
 flake8-print-3.1.4
 requests==2.22.0
 pathvalidate==2.0.1
-lxml==4.4.2
+lxml==4.6.3
 jinja2==2.11.1
 livereload==2.6.1
 more-itertools==8.2.0
